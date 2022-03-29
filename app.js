@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-app.use(express.json({ extended: true }));
+app.use(express.json({ extended: true, limit: '50mb' }));
 
 app.use('/api', require('./routes/getUserData.routes'));
 

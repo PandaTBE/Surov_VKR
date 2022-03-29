@@ -6,40 +6,40 @@ const router = Router();
 
 router.post('/info', async (req, res) => {
     try {
-        const { platform, userAgent } = req.body;
+        const usersData = await UserData.find({});
 
-        const data = await axios.get('https://www.cloudflare.com/cdn-cgi/trace').then((response) => response.data);
+        // const condidates = [];
+        const availableCondidates = [];
 
-        const clodflareData = data
-            .trim()
-            .split('\n')
-            .reduce(function (obj, pair) {
-                pair = pair.split('=');
-                return (obj[pair[0]] = pair[1]), obj;
-            }, {});
+        // if (condidates.length > 0) {
+        //     condidates.forEach((element) => {
+        //         const stringedCondidate = JSON.stringify(element);
+        //         let counter = 0;
+        //         Object.keys(user).forEach((key) => {
+        //             if (stringedCondidate.includes(user[key])) counter += 1;
+        //         });
+        //         console.log(counter);
+        //         if (counter > Math.round(PARAMS_NUMBER - PARAMS_NUMBER * 0.2)) {
+        //             availableCondidates.push(element);
+        //         }
+        //     });
+        // }
 
-        const geo = geoip.lookup(clodflareData.ip);
-
-        const user = {
-            platform,
-            userAgent,
-            ip: clodflareData.ip,
-            city: geo.city,
-            coordinates: geo.ll,
-        };
-
-        const condidates = await UserData.findOne(user);
-        if (condidates) {
-            return res.status(200).json({ message: 'Вы уже заходили на сайт!', type: 'warning', user: condidates });
+        if (availableCondidates.length > 0) {
+            return res
+                .status(200)
+                .json({ message: 'Есть похожие пользователи', type: 'warning', user: availableCondidates });
+        } else {
+            const userData = new UserData(req.body);
+            // const result = await userData.save();
+            if (result) {
+                return res.status(201).json({ message: 'Информация добавлена', type: 'success', user: req.body });
+            } else {
+                return res.status(400).json({ message: 'Что-то пошло не так, попробуйте снова' });
+            }
         }
-
-        const userData = new UserData(user);
-
-        await userData.save();
-
-        res.status(201).json({ message: 'Информация добавлена', type: 'success', user });
     } catch (error) {
-        res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
+        return res.status(400).json({ message: `Что-то пошло не так, попробуйте снова. ${error}` });
     }
 });
 

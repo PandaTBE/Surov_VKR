@@ -1,5 +1,5 @@
 {
-  "name": "Surov_VKR",
+  "name": "Surovvkr",
   "version": "1",
   "description": "VKR",
   "main": "app.js",
@@ -7,11 +7,6 @@
     "start": "node app.js",
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
-<<<<<<< HEAD
-    "client:install": "yarn --prefix client",
-    "client:build": "yarn build --prefix client",
-=======
->>>>>>> 16c929856f412fee90ea69f4a6346720059ef6c8
     "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "author": "Nikita Surov <surov.n2012@gmail.com>",
