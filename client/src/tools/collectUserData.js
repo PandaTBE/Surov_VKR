@@ -27,18 +27,18 @@ const collectUserData = async () => {
     try {
         userData = {
             screen_size: {
-                is_important: true,
+                is_important: false,
                 value: {
                     height: window.screen.height,
                     widht: window.screen.width,
                 },
             },
             color_depth: {
-                is_important: true,
+                is_important: false,
                 value: window.screen.colorDepth,
             },
             pixel_ratio: {
-                is_important: true,
+                is_important: false,
                 value: window.devicePixelRatio,
             },
             user_agent: {
@@ -94,6 +94,8 @@ const collectUserData = async () => {
     } catch (error) {
         console.log('>>>>Ошибка при получении атрибутов пользователя', error);
     }
+
+    console.log(userData);
     return userData;
 };
 

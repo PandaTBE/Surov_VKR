@@ -7,11 +7,11 @@ const schema = new Schema({
     },
     color_depth: {
         is_important: Boolean,
-        value: String,
+        value: Number,
     },
     pixel_ratio: {
         is_important: Boolean,
-        value: String,
+        value: Number,
     },
     user_agent: {
         is_important: Boolean,
@@ -23,7 +23,7 @@ const schema = new Schema({
     },
     cookies: {
         is_important: Boolean,
-        value: String,
+        value: Boolean,
     },
     plugins: {
         is_important: Boolean,
@@ -31,7 +31,7 @@ const schema = new Schema({
     },
     timezone: {
         is_important: Boolean,
-        value: String,
+        value: Number,
     },
     date_format: {
         is_important: Boolean,
@@ -47,7 +47,7 @@ const schema = new Schema({
     },
     hardware_concurrency: {
         is_important: Boolean,
-        value: String,
+        value: Number,
     },
     touch_compatibility: {
         is_important: Boolean,
