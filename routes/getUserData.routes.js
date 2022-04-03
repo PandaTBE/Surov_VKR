@@ -59,7 +59,7 @@ router.post('/info', async (req, res) => {
                         difCounter += 1;
                     }
                 });
-                if (difCounter > 1) availableCondidates.splice(index, 1);
+                if (difCounter > 0) availableCondidates.splice(index, 1);
             });
         }
 
