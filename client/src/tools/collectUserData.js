@@ -95,7 +95,6 @@ const collectUserData = async () => {
         console.log('>>>>Ошибка при получении атрибутов пользователя', error);
     }
 
-    console.log(userData);
     return userData;
 };
 
